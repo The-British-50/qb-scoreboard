@@ -90,16 +90,17 @@ if Config.Toggle then
 else
     RegisterCommand('+scoreboard', function()
         if scoreboardOpen then return end
-        QBCore.Functions.TriggerCallback('qb-scoreboard:server:GetScoreboardData', function(players, cops, playerList)
-            playerOptin = playerList
+        QBCore.Functions.TriggerCallback('qb-scoreboard:server:GetScoreboardData', function(players, cops, ambulance, playerList)
+                playerOptin = playerList
 
-            SendNUIMessage({
-                action = "open",
-                players = players,
-                maxPlayers = Config.MaxPlayers,
-                requiredCops = Config.IllegalActions,
-                currentCops = cops
-            })
+                SendNUIMessage({
+                    action = "open",
+                    players = players,
+                    maxPlayers = Config.MaxPlayers,
+                    requiredCops = Config.IllegalActions,
+                    currentCops = cops,
+                    currentAmbulance = ambulance
+                })
 
             scoreboardOpen = true
         end)
